@@ -1,0 +1,155 @@
+.page {
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 193px;
+  height: 100vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: auto;
+  background-color: var(--green-blue);
+}
+
+.smsbanner {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 1rem;
+  font-family: "Baloo 2", cursive;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 24px;
+  color: #ffffff;
+}
+
+.navigator {
+  flex-direction: row;
+}
+
+.listcomponent {
+  display: flex;
+  background: white;
+  width: 184px;
+  height: 52px;
+  overflow: auto;
+  float: right;
+  border: none;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+  cursor: pointer;
+}
+
+.listcomponentdefault {
+  display: flex;
+  background: transparent;
+  width: 184px;
+  height: 52px;
+  float: right;
+  border: none;
+  cursor: pointer;
+}
+
+.listcomponentdefault:hover {
+  background: var(--bleu-de-france);
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+}
+
+.listcomponent > .svg {
+  margin: auto 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.listcomponentdefault > .svg {
+  margin: auto 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.listcomponent > .text {
+  margin: auto 0;
+  font-family: "Cabin", sans-serif;
+  font-style: normal;
+
+  font-size: 14px;
+  line-height: 24px;
+
+  font-weight: 700;
+  color: var(--green-blue);
+  cursor: pointer;
+}
+
+.listcomponentdefault > .text {
+  margin: auto 0;
+  font-size: 14px;
+  font-style: normal;
+
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  color: white;
+  cursor: pointer;
+}
+
+.dashboard {
+  position: absolute;
+  left: 13.7rem;
+  height: 94vh;
+  width: 84%;
+  overflow: scroll;
+}
+.top {
+  display: flex;
+  margin-top: 25px;
+
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .top {
+    flex-direction: column;
+    margin-top: 25px;
+    width: 100%;
+  }
+
+  .search {
+    margin-top: 8px;
+    margin-right: 0;
+    margin-left: auto;
+    position: relative;
+  }
+}
+
+.dashboardheader {
+  font-family: "Cabin";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #1565c0;
+}
+
+.search {
+  margin-right: 28px;
+  margin-left: auto;
+  position: relative;
+}
+.search .i {
+  width: 250px;
+  height: 32px;
+  color: #1565c0;
+  border-radius: 8px;
+  font-family: "Cabin";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  border: 2px solid #1565c0;
+  padding-left: 0.8rem;
+}

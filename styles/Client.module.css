@@ -1,0 +1,255 @@
+.client {
+  margin-left: 25rem;
+}
+
+.body {
+  position: absolute;
+  left: 13.7rem;
+  height: 94vh;
+  width: 84%;
+  overflow: scroll;
+}
+
+.title {
+  font-family: "Cabin";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--bright-navy-blue);
+}
+
+.top {
+  display: flex;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.addclientcontainer {
+  width: 59.5rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  position: relative;
+  background: #f5f3f2;
+  padding: 20px;
+}
+.innerclientcontainer {
+  width: 43rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  position: relative;
+  padding: 10px;
+}
+
+.clientnameinputcontainer {
+  margin-top: 0.5rem;
+  display: block;
+  position: relative;
+}
+
+.clientnameinputcontainer > .cnilabel {
+  font-family: "Cabin";
+  font-size: 15px;
+  font-weight: 100;
+  display: block;
+  position: relative;
+}
+
+.clientnameinputcontainer > .cninput {
+  margin-top: 2.5px;
+  padding: 8px;
+  border: 1.5px #bdb6b4 solid;
+  width: 13rem;
+  border-radius: 3px;
+  position: relative;
+}
+
+.maincontactinputcontainer1 {
+  display: flex;
+  position: relative;
+  gap: 20px;
+}
+.maincontactinputcontainer {
+  display: block;
+  position: relative;
+}
+.maincontactinputcontainer > .maincontactinputlabel {
+  display: block;
+  font-family: "Cabin";
+  font-size: 13px;
+  font-weight: 100;
+  position: relative;
+}
+
+.maincontactinputcontainer > .maincontactinput {
+  display: block;
+  margin-top: 2.5px;
+  padding: 8px;
+  border: 1.5px #bdb6b4 solid;
+  width: 13rem;
+  border-radius: 3px;
+}
+
+.maincontacttitle {
+  font-family: "Cabin";
+  font-size: 17px;
+  font-weight: 100;
+  margin-top: 0rem;
+  color: #0d47a1;
+  margin-bottom: 10px;
+  border-bottom: 2.5px solid #0d47a1;
+  padding-bottom: 3px;
+  width: min-content;
+  white-space: nowrap;
+}
+
+.addaccountscontactbutton {
+  padding: 9px;
+  background: #0d47a1;
+  color: aliceblue;
+  border: transparent;
+  border-radius: 4px;
+  font-family: "Cabin";
+  font-weight: 100;
+  margin-top: 1rem;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  margin-left: auto;
+  cursor: pointer;
+  display: block;
+  width: 4rem;
+}
+
+.addaccountscontactbutton:hover {
+  background: #054070;
+}
+
+.addaccountscontactbutton:active {
+  background: #0d47a1;
+}
+.sctcontainer {
+  margin: auto 45%;
+  display: flex;
+}
+.stateclienttitle {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  background: var(--green-blue);
+  font-family: "Cabin";
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  color: aliceblue;
+  position: relative;
+  border-radius: 3px;
+  display: flex;
+  white-space: nowrap;
+}
+
+.btitlec {
+  margin-top: 3rem;
+  width: 32rem;
+  align-content: center;
+  vertical-align: middle;
+  align-items: center;
+  position: relative;
+  display: flex;
+}
+
+.btitle {
+  font-family: "Cabin";
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  position: relative;
+}
+
+.baddbutton {
+  position: relative;
+  margin-left: auto;
+  margin-right: 0;
+  background: transparent;
+  padding: 0.5rem;
+  font-family: "Cabin";
+  color: var(--green-blue);
+  border: 0.5px #bdb6b4 solid;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.baddbutton:hover {
+  background: aliceblue;
+}
+.baddbutton:active {
+  background: var(--uranian-blue);
+}
+
+.branchlist {
+  margin-top: 5px;
+  height: 30rem;
+  width: 32rem;
+  border: 1px #bdb6b4 solid;
+  border-radius: 3px;
+  overflow-y: scroll;
+}
+
+.blistitem {
+  position: relative;
+  width: 100%;
+  height: 3rem;
+  background: transparent;
+  border-bottom: 0.2px var(--blue-jeans-warm) solid;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cabin";
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  cursor: pointer;
+}
+.blistitem2 {
+  position: relative;
+  width: 100%;
+  height: 3rem;
+  background: var(--green-blue);
+  border-bottom: 0.2px var(--blue-jeans-warm) solid;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cabin";
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  cursor: pointer;
+  color: white;
+}
+
+.blistitem:active {
+  background: var(--green-blue);
+  color: white;
+}
+
+.modulerow {
+  display: flex;
+  gap: 5rem;
+}
+
+.blistitem:hover {
+  background: var(--green-blue);
+  color: white;
+}
+
+.branchempty {
+  vertical-align: center;
+  text-align: center;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  font-family: "Cabin";
+  font-size: 20px;
+  color: var(--green-blue);
+  display: flex;
+  margin: 50% auto;
+}
