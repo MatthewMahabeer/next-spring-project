@@ -47,7 +47,7 @@ a {
 .modal-content {
   position: relative;
   width: 30rem;
-  height: 7rem;
+  height: 8rem;
   border-radius: 12px;
   background: #fff;
 }
@@ -95,11 +95,13 @@ a {
   margin: 0;
 }
 .brandinputlabel {
+  margin-top: 10px;
   margin-left: 7px;
   padding-right: 1rem;
   font-family: "Cabin";
   font-weight: 100;
   font-size: 15px;
+  height: 20px;
 }
 
 .brandinput {
@@ -109,6 +111,7 @@ a {
   font-size: 15px;
   border: 0.5px var(--bright-navy-blue) solid;
   border-radius: 3px;
+  height: 35px;
 }
 .modelinputlabel {
   margin-top: 1rem;
@@ -138,13 +141,14 @@ a {
 .brand-save {
   padding: 0.6rem;
   margin-left: 1rem;
-  border-radius: 0.4rem;
+  border-radius: 0.15rem;
   background: var(--bright-navy-blue);
   color: aliceblue;
   font-family: "Cabin";
   font-weight: 100;
   border: transparent;
   cursor: pointer;
+  height: 35px;
 }
 
 .model-save {
