@@ -134,6 +134,24 @@
   z-index: 1;
 }
 
+.deletebrandbutton {
+  margin: auto 2rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: red;
+  border: 1px solid red;
+  border-radius: 3px;
+  font-family: "Cabin";
+  font-style: normal;
+  font-weight: 100;
+  z-index: 1;
+}
+
+.deletebrandbutton:hover{
+  background: red;
+  color: white;
+}
+
 .details {
   margin-left: 50px;
   margin-top: 15px;
