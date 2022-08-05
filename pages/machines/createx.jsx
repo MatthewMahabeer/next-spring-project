@@ -9,13 +9,16 @@ import CircularProgress from '@mui/material/CircularProgress'
 import { useSpring, animated, config } from 'react-spring';
 import { isEmpty } from 'lodash';
 import { useCallback } from 'react';
-import Delete from "../../componentsx/machine-components/modals/Delete";
+import Delete from "../../componentsx/machine-components/modals/Modal";
 
 function CreateX() {
   const [brandAtom] = useAtom(selectedBrandAtom);
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedModel, setSelectedModel] = useState(null);
-  const [operator, setOperator] = useState("");
+  const [operator, setOperator] = useState({
+    operation: '',
+    mode: '',
+  });
   const [brandIdProp, setBrandIdProp] = useState(null);
 
 
@@ -25,25 +28,36 @@ function CreateX() {
     data: models, error: modelsError, refetch: refetchModels } = useQuery(['models'], () => getModels(selectedBrand?.id), {
       enabled: selectedBrand !== null,
     });
-  const { data: deleteBrandReturn, isLoading: deleteBrandLoading, isSuccess: deleteBrandSuccess, mutate: deleteBrand } = useMutation(() => deleteBrand(brandId), {
+
+  const { data: deleteBrandReturn, isLoading: deleteBrandLoading, isSuccess: deleteBrandSuccess, mutate: deleteSelectedBrand } = useMutation(() => deleteBrand(brandId), {
     onSuccess: refetchBrands,
   });
 
-  const deleteRef = useRef();
+  const modalRef = useRef();
 
   const toggleRefState = useCallback(() => {
-    deleteRef.current.toggleModal();
-  }, [deleteRef]);
+    modalRef.current.toggleModal();
+  }, [modalRef]);
 
   const toggleR = {
-    deleteBrand: useCallback(() => {
-      deleteRef.current.toggleModal();
-      setOperator("brand");
-    }, [deleteRef]),
+    addBrand: useCallback(() => {
+      modalRef.current.toggleModal();
+      setOperator({
+        operation: 'brand',
+        mode: 'add',
+    })
+    }, [modalRef]),
+    deleteBrand: useCallback((brand) => {
+      modalRef.current.toggleModal(brand);
+      setOperator({
+        operation: 'brand',
+        mode: 'delete',
+      });
+    }, [modalRef]),
     deleteModel: useCallback(() => {
-      deleteRef.current.toggleModal();
+      modalRef.current.toggleModal();
       setOperator("model");
-    }, [deleteRef])
+    }, [modalRef])
   } 
 
   const animation = useSpring({
@@ -62,14 +76,6 @@ function CreateX() {
     }
   }
 
-  const deleteProps = (brandId) => {
-    brandDeleteProps: {
-      brandId: brandIdProp,
-      deleteFunction: deleteBrand(brandId),
-    }
-  }
-
-
   console.log(brands);
   return (
     <React.Fragment>
@@ -85,7 +91,7 @@ function CreateX() {
         <div className={styles.brandline}>
           <div className={styles.titleline}>
             <div className={styles.brandtitle}>Brands</div>
-            <button className={styles.addbrandbutton}>Add a brand</button>
+            <button className={styles.addbrandbutton} onClick={toggleR.addBrand} >Add a brand</button>
           </div>
           <hr className={styles.linebreak} />
           <div>
@@ -129,7 +135,7 @@ function CreateX() {
                         >
                           Cancel
                         </button>
-                        <button onClick={(toggleR.deleteBrand)} className={styles.deletebrandbutton}>
+                        <button onClick={() => (toggleR.deleteBrand(selectedBrand))} className={styles.deletebrandbutton}>
                           Delete Brand
                         </button>
                       </div>
@@ -180,7 +186,7 @@ function CreateX() {
           </div>
         }
       </div>
-      <Delete ref={deleteRef} operator={operator} />
+      <Delete ref={modalRef} operator={operator} brand={selectedBrand} refetchBrands={refetchBrands} nullifyBrand={() => setSelectedBrand(null)} />
     </React.Fragment>
   );
 }

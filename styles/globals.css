@@ -90,6 +90,14 @@ a {
   color: white;
 }
 
+.modal-content-brand {
+  position: relative;
+  width: 21em;
+  height: 11rem;
+  border-radius: 12px;
+  background: #fff;
+}
+
 .modal-content-model {
   position: relative;
   width: 33em;
