@@ -4,3 +4,4 @@ export const getBrands = async () => await node.get("/brands").then((res) => res
 export const getModels = async (brandId) => await node.get(`/models/${brandId}`).then((res) => res.data);
 export const addBrand = async (data) => await node.post("/brands", data);
 export const deleteBrand = async (brandId) => await node.delete(`/brands/${brandId}`).then((res) => res.data);
+export const addModel = async (data) => await node.post(`/models/${data.brandId}}`, data);

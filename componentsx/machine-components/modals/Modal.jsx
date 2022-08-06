@@ -2,19 +2,39 @@ import React, { useState, useImperativeHandle, forwardRef } from "react";
 import {
   deleteBrand as removeBrand,
   addBrand as saveBrand,
+  addModel as saveModel,
 } from "../../../pages/api/apiHandler";
-import { TextField } from "@mui/material";
+import {
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
 
-const Modal = ({ operator, brand, refetchBrands, nullifyBrand }, ref) => {
+const Modal = (
+  { operator, brand, refetchBrands, nullifyBrand, refetchModels },
+  ref
+) => {
   const [visibilityState, setVisible] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [brandName, setBrandName] = useState("");
+  const [modelName, setModelName] = useState("");
+  const [type, setType] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
   //implement mutation query to save brand
-  const saveBrandMutation = useMutation(() => saveBrand({ name: brandName }), {
+  const saveBrandMutation = useMutation(saveBrand, {
     onSuccess: () => {
       refetchBrands();
       setVisible(false);
+      setBrandName("");
     },
   });
   //implement mutation query to delete brand
@@ -25,35 +45,13 @@ const Modal = ({ operator, brand, refetchBrands, nullifyBrand }, ref) => {
       nullifyBrand();
     },
   });
-
-  //Implement try, catch delete brand function here
-  // const deleteBrand = async () => {
-  //   try {
-  //     await removeBrand(brand.id);
-  //     refetchBrands();
-  //     nullifyBrand();
-  //     setVisible(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // //Implement add brand function here
-  // const addBrand = async () => {
-  //   try {
-  //     await saveBrand({ name: brandName });
-  //     refetchBrands();
-  //     setBrandName("");
-  //     nullifyBrand();
-  //     setVisible(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  //Implement unique delete brand function here
-
-  //Function to delete the selected brand.
+  //implement mutation query to save model
+  const saveModelMutation = useMutation(saveModel, {
+    onSuccess: () => {
+      refetchModels();
+      setVisible(false);
+    },
+  });
 
   useImperativeHandle(ref, () => ({
     toggleModal: (brand) => {
@@ -62,6 +60,7 @@ const Modal = ({ operator, brand, refetchBrands, nullifyBrand }, ref) => {
     },
     close: () => {
       setVisible(false);
+      reset();
     },
   }));
 
@@ -98,7 +97,13 @@ const Modal = ({ operator, brand, refetchBrands, nullifyBrand }, ref) => {
             ></path>
           </svg>
         </div>
-        <div className="modal-header">
+        <div
+          className={
+            operator.mode == "add" && operator.operation == "brand"
+              ? "modal-brand-header"
+              : "modal-header"
+          }
+        >
           {operator.mode == "delete" &&
             (operator.operation == "brand"
               ? "Are you sure you want to delete this brand?"
@@ -112,7 +117,13 @@ const Modal = ({ operator, brand, refetchBrands, nullifyBrand }, ref) => {
               ? `Add a model to ${brand.name}`
               : "")}
         </div>
-        <div className="modal-content-paragraph">
+        <div
+          className={
+            operator.mode == "add" && operator.operation == "brand"
+              ? ""
+              : "modal-content-paragraph"
+          }
+        >
           {operator.mode == "delete" &&
             (operator.operation == "brand"
               ? "This will delete all models associated with this brand."
@@ -122,24 +133,70 @@ const Modal = ({ operator, brand, refetchBrands, nullifyBrand }, ref) => {
           {operator?.mode == "add" &&
             (operator.operation == "brand" ? (
               <div>
-                <TextField
-                  sx={{ marginTop: "10px" }}
-                  size="small"
-                  id="brand-name"
-                  label="Brand Name"
-                  variant="outlined"
-                  onChange={(e) => setBrandName(e.target.value)}
-                />
+                <div
+                  style={{
+                    marginTop: "25px",
+                    justifyContent: "center",
+                    display: "flex",
+                    width: "100%",
+                  }}
+                >
+                  <input
+                    type="text"
+                    className="brand-text-field"
+                    placeholder="Brand Name"
+                    {...register("name", { required: true })}
+                  />
+                </div>
+                {errors.name && (
+                  <p
+                    style={{
+                      marginTop: "4px",
+                      marginBottom: "3px",
+                      justifySelf: "center",
+                      textAlign: "center",
+                      color: "red",
+                    }}
+                  >
+                    Please enter a brand name
+                  </p>
+                )}
               </div>
             ) : operator.operation == "model" ? (
-              <div>
-                <label htmlFor="">Name of Model</label>
-                <input type="text" placeholder="Enter model name" />
-                <label htmlFor="">Select Type</label>
-                <select>
-                  <option value="">Black & White</option>
-                  <option value="">Color</option>
-                </select>
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: "8px",
+                  justifyContent: "space-between",
+                }}
+              >
+                <TextField
+                  size="small"
+                  id="model-name"
+                  label="Name of Model"
+                  variant="outlined"
+                  onChange={(e) => setModelName(e.target.value)}
+                />
+                <FormControl
+                  variant="outlined"
+                  size="small"
+                  sx={{ width: "11rem" }}
+                >
+                  <InputLabel id="select-label">Type of Printer</InputLabel>
+                  <Select
+                    // sx={{ marginLeft: "10px" }}
+                    labelId="select-label"
+                    size="small"
+                    id="model-type"
+                    label="Type of Printer"
+                    variant="outlined"
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <MenuItem value="BLACKANDWHITE">Black & White</MenuItem>
+                    <MenuItem value="COLOR">Color</MenuItem>
+                  </Select>
+                </FormControl>
               </div>
             ) : (
               ""
@@ -147,7 +204,13 @@ const Modal = ({ operator, brand, refetchBrands, nullifyBrand }, ref) => {
         </div>
 
         <div className="modal-footer">
-          <div className="delete-button-row">
+          <div
+            className={
+              operator.mode == "add" && operator.operation == "brand"
+                ? "add-button-row"
+                : "delete-button-row"
+            }
+          >
             {operator.mode == "delete" && (
               <button
                 className="delete-button"
@@ -159,7 +222,19 @@ const Modal = ({ operator, brand, refetchBrands, nullifyBrand }, ref) => {
             {operator.mode == "add" && (
               <button
                 className="cancel-button"
-                onClick={saveBrandMutation.mutate}
+                onClick={
+                  operator.operation == "brand"
+                    ? handleSubmit(saveBrandMutation.mutate)
+                    : //() => saveBrandMutation.mutate({ name: brandName.trim() })
+                    operator.operation == "model"
+                    ? () =>
+                        saveModelMutation.mutate({
+                          brandId: brand.id,
+                          name: modelName,
+                          type: type,
+                        })
+                    : ""
+                }
               >
                 Save
               </button>

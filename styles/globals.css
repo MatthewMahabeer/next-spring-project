@@ -75,7 +75,7 @@ a {
   color: white;
 }
 
-.cancel-button { 
+.cancel-button {
   background: white;
   border: 1px solid var(--green-blue);
   padding: 5px 12px;
@@ -124,6 +124,16 @@ a {
   padding: 20px;
 }
 
+.add-button-row {
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
 .modal-content-department {
   position: relative;
   width: 35em;
@@ -135,6 +145,33 @@ a {
 .modal-header {
   margin-top: 1rem;
   margin-left: 1rem;
+  font-family: "Cabin";
+  font-style: bold;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--bright-navy-blue);
+}
+
+.brand-text-field {
+  width: 70%;
+  height: 2rem;
+  border-radius: 5px;
+  border: 1px solid var(--green-blue);
+  padding: 0.5rem;
+  box-sizing: border-box;
+  font-family: "Cabin";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--green-blue);
+}
+
+.modal-brand-header {
+  margin-top: 1rem;
+  text-align: center;
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
   font-family: "Cabin";
   font-style: bold;
   font-weight: 400;
@@ -256,7 +293,8 @@ a {
   margin: 7px;
   font-size: 15px;
   font-weight: 500;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .branchmodalerror {
